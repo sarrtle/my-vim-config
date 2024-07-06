@@ -46,3 +46,19 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, _
     end
     default_handler(_, result, ctx, _)
 end
+
+-- replace cmd to powershell and automatically activate
+-- virtual virtual enviroment of python in windows
+if vim.loop.os_uname().sysname ~= "Linux" then
+  local activation_command = ""
+  if vim.env.VIRTUAL_ENV then
+    activation_command = '-NoExit -Command "& {& $env:VIRTUAL_ENV/scripts/activate.ps1}"'
+  else
+    activation_command = '-NoExit -Command "clear"' -- No logo doesn't seem to work here
+  end
+
+  vim.o.shell = "powershell.exe"
+  vim.o.shellcmdflag = activation_command
+  vim.o.shellquote = ""
+  vim.o.shellxquote = ""
+end

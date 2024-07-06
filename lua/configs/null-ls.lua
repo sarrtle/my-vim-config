@@ -1,16 +1,46 @@
 local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+-- Get python version for dynamic version used
+local function get_python_version()
+  local handle = io.popen("python --version")
+  local result = handle:read("*a")
+  handle:close()
+  return result:match("(%d+%.%d+)"):gsub("%.", "")
+end
+
+-- Get environment path for specific system
+local function get_vertual_env_paths()
+  sysname = vim.loop.os_uname().sysname
+  local python_version = get_python_version()
+  
+  -- for linux
+  if sysname == "Linux" then
+    local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or "/usr"
+    return virtual .. "/bin/python" .. python_version:sub(1, 1) -- get only the major version (eg. 3)
+
+  -- for windows
+  else
+    local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
+    -- with or without virtual environment
+    if not virtual then
+      virtual = os.getenv("USERPROFILE") .. "/appdata/local/programs/python/python" .. python_version
+      return virtual .. "/python"
+    else
+      return virtual .. "/scripts/python"
+    end
+  end
+end
+
 local opts = {
   sources = {
     -- PYTHON
     null_ls.builtins.formatting.black,
     null_ls.builtins.diagnostics.mypy.with({
       extra_args = function()
-        local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or "/usr"
         return {
           "--check-untyped-defs",
-          "--python-executable", virtual .. "/bin/python3",
+          "--python-executable", get_vertual_env_paths(),
           "--explicit-package-bases", -- checking top level directory if __init__.py is missing
           "--cache-dir=/dev/null", -- disable the .mypy_cache but mypy will tend to slower for rerun without referencing old data
         }

@@ -1,10 +1,10 @@
 # Uses NvChad distribution
 
-> [!CAUTION]
-> Currently not tested and not working on windows. Might support it soon. This is for **linux only.**
-
 > [!TIP]
-> install by `git clone https://github.com/sarrtle/my-vim-config.git .config/nvim`
+> **for Linux** <br/>
+> `git clone https://github.com/sarrtle/my-vim-config.git .config/nvim`<br/>
+> **for windows** <br/>
+> `git clone https://github.com/sarrtle/my-vim-config.git appdata/local/nvim`
 > - open your terminal and run `nvim`
 > - wait for it to install then run `:Mason`
 > - wait for it to load and run `:MasonInstallAll` this will install the plugins
@@ -33,4 +33,3 @@ react
 ![240425_02h31m37s_screenshot](https://github.com/sarrtle/my-vim-config/assets/163162322/b950c2c5-dba6-46b8-9cf4-5b9b31717651)
 tailwind
 ![240425_02h32m15s_screenshot](https://github.com/sarrtle/my-vim-config/assets/163162322/2a795403-0917-49fc-8b5f-689beb97f810)
-
