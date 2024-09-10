@@ -22,25 +22,6 @@ return {
     end,
   },
 
-  -- Install all required plugins
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        -- For python
-        "pyright",
-        "mypy",
-        "pylint",
-        "black",
-        -- For Web Development
-        "typescript-language-server",
-        "tailwindcss-language-server",
-        "prettierd",
-        "emmet-language-server"
-      }
-    }
-  },
-
   -- Install all required language syntax
   {
     "nvim-treesitter/nvim-treesitter",

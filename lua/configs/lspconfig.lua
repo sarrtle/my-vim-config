@@ -45,7 +45,7 @@ lspconfig.emmet_language_server.setup({
 })
 
 -- TYPESCRIPT
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   on_init = on_init,
   on_attach = on_attach,
   capabalities = capabalities,
