@@ -2,7 +2,7 @@ require "nvchad.options"
 
 -- add yours here!
 
--- colorizer
+-- add colors in tailwind on auto completion
 require("colorizer").setup {
   filetypes = { "*" },
   user_default_options = {
@@ -45,6 +45,24 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, _
         result.diagnostics = new_diagnostics
     end
     default_handler(_, result, ctx, _)
+end
+
+-- fix 'no information available' on hover if no result and empty markdowns
+vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
+  config = config or {}
+  config.focus_id = ctx.method
+
+  if not (result and result.contents) then
+    return
+  end
+
+  local markdown_lines = vim.split(result.contents.value, '\n', {trimempty = false})
+
+  if vim.tbl_isempty(markdown_lines) then
+    return
+  end
+
+  return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
 end
 
 -- replace cmd to powershell and automatically activate

@@ -11,9 +11,9 @@ end
 
 -- Get environment path for specific system
 local function get_vertual_env_paths()
-  sysname = vim.loop.os_uname().sysname
+  local sysname = vim.loop.os_uname().sysname
   local python_version = get_python_version()
-  
+
   -- for linux
   if sysname == "Linux" then
     local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or "/usr"
