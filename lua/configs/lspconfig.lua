@@ -14,7 +14,13 @@ lspconfig.pyright.setup({
   capabalities = capabalities,
   root_dir = function ()
     return vim.fn.getcwd()
-  end
+  end,
+
+  -- Override LSP diagnostics handler to filter Pyright diagnostics
+  -- I only need pyright for autocompletion
+  handlers = {
+    ["textDocument/publishDiagnostics"] = function() end
+  }
 })
 
 -- HTML
