@@ -31,22 +31,6 @@ require("colorizer").setup {
   buftypes = {},
 }
 
--- Override LSP diagnostics handler to filter Pyright diagnostics
-local default_handler = vim.lsp.handlers["textDocument/publishDiagnostics"]
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, _)
-    local diagnostics = result.diagnostics
-    if diagnostics then
-        local new_diagnostics = {}
-        for _, diagnostic in ipairs(diagnostics) do
-            if not (diagnostic.source and diagnostic.source:find("Pyright")) then
-                table.insert(new_diagnostics, diagnostic)
-            end
-        end
-        result.diagnostics = new_diagnostics
-    end
-    default_handler(_, result, ctx, _)
-end
-
 -- fix 'no information available' on hover if no result and empty markdowns
 vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
   config = config or {}
@@ -80,3 +64,24 @@ if vim.loop.os_uname().sysname ~= "Linux" then
   vim.o.shellquote = ""
   vim.o.shellxquote = ""
 end
+
+-- Realtime update of diagnostic list
+vim.api.nvim_create_autocmd({"DiagnosticChanged"}, {
+  callback = function()
+    -- Check if the location list is open by examining its winid
+    -- If the location list is open, update the diagnostic list
+    local loclist_info = vim.fn.getloclist(0, { winid = 0 })
+    if loclist_info.winid ~= -1 then
+
+      -- check if the current buffer is active and valid
+      -- If I don't do this, this callback will still try
+      -- to run this code even there is no buffer and raising
+      -- some error
+      local bufnr = vim.api.nvim_get_current_buf()
+
+      if vim.api.nvim_buf_is_loaded(bufnr) then
+        vim.diagnostic.setloclist({ open = false })
+      end
+    end
+  end,
+})
