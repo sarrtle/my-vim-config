@@ -11,3 +11,9 @@ map("n", "<leader>fm", function()
 end, { desc = "File Format with conform" })
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
+
+-- enable disable inlay hint
+map("n", "m", function ()
+  local is_enabled = vim.lsp.inlay_hint.is_enabled()
+  vim.lsp.inlay_hint.enable(not is_enabled)
+end, { desc = "Enable Disable inlay hints" })
