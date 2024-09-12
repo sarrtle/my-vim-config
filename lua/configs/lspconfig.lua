@@ -7,7 +7,7 @@ local capabalities = configs.capabalities
 local lspconfig = require "lspconfig"
 
 -- PYTHON
-lspconfig.pyright.setup({
+lspconfig.basedpyright.setup({
   filetypes = {"python"},
   on_init = on_init,
   on_attach = on_attach,
