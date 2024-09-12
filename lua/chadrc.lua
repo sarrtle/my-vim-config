@@ -10,9 +10,10 @@ M.base46 = {
 }
 
 M.mason = {
-    pkgs = {
+  cmd = true,
+  pkgs = {
     -- For python
-    "pyright",
+    "basedpyright",
     "mypy",
     "pylint",
     "black",
