@@ -16,6 +16,7 @@ return {
   -- In order to modify the `lspconfig` configuration:
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     config = function()
         require("nvchad.configs.lspconfig").defaults()
         require "configs.lspconfig"
