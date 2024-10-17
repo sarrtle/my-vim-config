@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -25,9 +25,9 @@ return {
         "typescript",
         "tsx",
         "html",
-        "css"
-      }
-    }
+        "css",
+      },
+    },
   },
 
   -- Auto close tag for jsx, tsx
@@ -37,10 +37,31 @@ return {
       "javascript",
       "javascriptreact",
       "typescript",
-      "typescriptreact"
+      "typescriptreact",
     },
     config = function()
       require("nvim-ts-autotag").setup()
-    end
-  }
+    end,
+  },
+
+  -- Markdown plugin
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    ft = "markdown",
+
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+
+    config = function()
+      local markview = require "markview"
+      local presets = require "markview.presets"
+
+      markview.setup {
+        checkboxes = presets.checkboxes.nerd,
+      }
+    end,
+  },
 }
