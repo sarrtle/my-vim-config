@@ -38,7 +38,6 @@ lspconfig.ruff.setup {
         },
         ignore = {
           -- docstring for class init
-          "D107",
         },
       },
     },
