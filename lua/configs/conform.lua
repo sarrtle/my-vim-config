@@ -3,7 +3,7 @@ local options = {
     lua = { "stylua" },
     css = { "prettierd" },
     html = { "prettierd" },
-    python = { "black", "ruff" }
+    python = { "black", "ruff" },
   },
 
   format_on_save = {
