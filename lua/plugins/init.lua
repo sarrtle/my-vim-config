@@ -64,4 +64,13 @@ return {
       }
     end,
   },
+
+  -- Neocodeium plugin
+  {
+    "monkoose/neocodeium",
+    event = "VeryLazy",
+    config = function()
+      require("neocodeium").setup()
+    end,
+  },
 }
