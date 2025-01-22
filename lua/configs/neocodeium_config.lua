@@ -43,10 +43,17 @@ function M.setup_listeners()
         -- Customize status based on events
         if event == "NeoCodeiumServerConnecting" then
           M.status = "󰚩 Codeium Connecting..."
-        elseif event == "NeoCodeiumServerConnected" then
+        elseif event == "NeoCodeiumServerConnected" or event == "NeoCodeiumBufEnabled" then
           M.status = "󰚩 Codeium" -- Server connected icon
         elseif event == "NeoCodeiumServerStopped" then
           M.status = "󰚩 Codeium Unavailable" -- Server stopped icon
+        elseif event == "NeoCodeiumBufDisabled" then
+          -- I don't know why disabled buffer are not detected even
+          -- they have been setup to false in filetypes, in plugins/init.lua
+          -- it seems that this event it only called if the function: require("neocodeium.commands").disable_buffer()
+          -- one way to fix this is to check the extension of the buffer and disable them if detected from neocodeium
+          -- filetypes
+          M.status = ""
         end
 
         -- Force statusline refresh
