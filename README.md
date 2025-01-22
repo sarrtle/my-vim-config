@@ -18,3 +18,4 @@
 1. **Auto close tags on react html**: whenever you write any html tags, it will be automatically close. `<p>This is a paragraph</p>`
 2. **Auto formatting**: By following code writing standard, your code will be automatically clean from bad writing. Both python and Web development works.
 3. **Markdown preview**: Preview markdown files with keyboard mapping of `mm` for toggle or `md` for split view.
+4. **AI auto suggestion**: Using `Codeium`, this config has AI auto suggestions. To start, type command `:NeoCodeium auth` to get your API key from [Codeium](https://codeium.com/).
