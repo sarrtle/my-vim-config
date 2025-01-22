@@ -70,7 +70,27 @@ return {
     "monkoose/neocodeium",
     event = "VeryLazy",
     config = function()
-      require("neocodeium").setup { silent = true }
+      require("neocodeium").setup {
+        silent = true,
+        filetypes = {
+          -- manual control of all possible filetypes
+          -- add more if needed
+          lua = true,
+          python = true,
+          javascript = true,
+          javascriptreact = true,
+          typescript = true,
+          typescriptreact = true,
+          text = false,
+          markdown = false,
+          json = false,
+          yaml = false,
+          -- I don't know why the rest of the filetypes
+          -- are not disabling after putting false to
+          -- all rest of filetypes
+          ["."] = false,
+        },
+      }
     end,
   },
 }
