@@ -70,26 +70,16 @@ return {
     "monkoose/neocodeium",
     event = "VeryLazy",
     config = function()
+      local filetypes = require("configs.neocodeium_config").filetypes
       require("neocodeium").setup {
         silent = true,
-        filetypes = {
-          -- manual control of all possible filetypes
-          -- add more if needed
-          lua = true,
-          python = true,
-          javascript = true,
-          javascriptreact = true,
-          typescript = true,
-          typescriptreact = true,
-          text = false,
-          markdown = false,
-          json = false,
-          yaml = false,
-          -- I don't know why the rest of the filetypes
-          -- are not disabling after putting false to
-          -- all rest of filetypes
-          ["."] = false,
-        },
+        -- will work only important filetypes
+        filter = function()
+          if vim.tbl_contains(filetypes, vim.bo.filetype) then
+            return true
+          end
+          return false
+        end,
       }
     end,
   },
