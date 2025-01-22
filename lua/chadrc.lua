@@ -17,6 +17,14 @@ M.base46 = {
 M.ui = {
   statusline = {
     theme = "vscode",
+    -- warning: Always check the order if things are updated in
+    -- https://github.com/NvChad/base46/blob/v3.0/lua/base46/statusline.lua
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "neocodeium", "lsp", "cursor", "cwd" },
+    modules = {
+      neocodeium = function()
+        return require("configs.neocodeium_config").status .. " "
+      end,
+    },
   },
 }
 

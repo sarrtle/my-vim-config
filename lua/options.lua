@@ -57,3 +57,6 @@ vim.api.nvim_create_autocmd({ "DiagnosticChanged" }, {
     end
   end,
 })
+
+-- neocodeium event listeners
+require("configs.neocodeium_config").setup_listeners()

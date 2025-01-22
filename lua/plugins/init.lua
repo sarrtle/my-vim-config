@@ -70,7 +70,7 @@ return {
     "monkoose/neocodeium",
     event = "VeryLazy",
     config = function()
-      require("neocodeium").setup()
+      require("neocodeium").setup { silent = true }
     end,
   },
 }
