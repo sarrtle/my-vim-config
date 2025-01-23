@@ -3,7 +3,9 @@ local options = {
     lua = { "stylua" },
     css = { "prettierd" },
     html = { "prettierd" },
-    python = { "black" },
+    -- ruff clean up unused imports, and other might
+    -- useful stuffs.
+    python = { "black", "ruff" },
   },
 
   format_on_save = {
