@@ -83,4 +83,13 @@ return {
       }
     end,
   },
+
+  -- Code outliner
+  {
+    "stevearc/aerial.nvim",
+    event = "VeryLazy",
+    config = function()
+      require "configs.aerial_config"
+    end,
+  },
 }

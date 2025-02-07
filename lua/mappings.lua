@@ -42,3 +42,11 @@ end, { desc = "Neocodeium cycle through suggestions in reverse" })
 vim.keymap.set("i", "<A-c>", function()
   require("neocodeium").clear()
 end, { desc = "Neocodeium clear current suggestions" })
+
+-- aerial mappings
+vim.keymap.set("n", "<C-a>", function()
+  require("aerial").toggle { focus = false, direction = "right" }
+end, { desc = "Aerial toggle" })
+vim.keymap.set("n", "<C-b>", function()
+  require("aerial").nav_toggle()
+end, { desc = "Aerial nav toggle" })
