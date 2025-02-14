@@ -2,9 +2,9 @@
 
 > [!TIP]
 > **for Linux** <br/>
-> `git clone https://github.com/sarrtle/my-vim-config.git .config/nvim`<br/>
+> `git clone https://github.com/sarrtle/.nvim.git .config/nvim`<br/>
 > **for windows** <br/>
-> `git clone https://github.com/sarrtle/my-vim-config.git appdata/local/nvim`
+> `git clone https://github.com/sarrtle/.nvim.git appdata/local/nvim`
 > - open your terminal and run `nvim`
 > - wait for it to install then run `:Mason`
 > - wait for it to load and run `:MasonInstallAll` this will install the plugins
