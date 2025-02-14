@@ -25,17 +25,11 @@ end
 
 -- replace cmd to powershell and automatically activate
 -- virtual virtual enviroment of python in windows
-if vim.loop.os_uname().sysname ~= "Linux" then
-  local activation_command = ""
-  if vim.env.VIRTUAL_ENV then
-    activation_command = "-NoLogo -NoExit -Command & " .. vim.env.VIRTUAL_ENV .. "/scripts/activate.ps1"
-  else
-    activation_command = "-NoLogo -NoExit"
-  end
+if vim.loop.os_uname().sysname == "Windows_NT" then
   vim.o.shell = "pwsh.exe"
-  vim.o.shellcmdflag = activation_command
-  vim.o.shellquote = ""
-  vim.o.shellxquote = ""
+  vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+  vim.opt.shellquote = '"'
+  vim.opt.shellxquote = ""
 end
 
 -- Realtime update of diagnostic list
