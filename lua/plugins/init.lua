@@ -26,6 +26,7 @@ return {
         "tsx",
         "html",
         "css",
+        "svelte",
       },
     },
   },
@@ -38,6 +39,7 @@ return {
       "javascriptreact",
       "typescript",
       "typescriptreact",
+      "svelte",
     },
     config = function()
       require("nvim-ts-autotag").setup()
