@@ -25,6 +25,12 @@ lspconfig.basedpyright.setup {
 
 -- PYTHON: Linter and formatter
 lspconfig.ruff.setup {
+  -- disable ruff hover capabilities, since it doesn't have one
+  -- but trying to hover and it throws `no information available`
+  -- message
+  handlers = {
+    ["textDocument/hover"] = function() end,
+  },
   init_options = {
     settings = {
       -- Ruff language server settings go here
@@ -90,11 +96,22 @@ lspconfig.ts_ls.setup {
   capabalities = capabalities,
 }
 
+-- SVELTE: diagnostics and auto completion, with typescript support.
+lspconfig.svelte.setup {
+  on_init = on_init,
+  on_attach = on_attach,
+  capabalities = capabalities,
+}
+
 -- TAILWIND: tailwind css auto completion
 lspconfig.tailwindcss.setup {
   on_init = on_init,
   on_attach = on_attach,
   capabalities = capabalities,
+  -- remove hover capabilities because it throws `no information available`
+  handlers = {
+    ["textDocument/hover"] = function() end,
+  },
 }
 
 -- HTML: auto completion
