@@ -33,19 +33,3 @@ vim.api.nvim_create_autocmd({ "DiagnosticChanged" }, {
     end
   end,
 })
-
--- neocodeium event listeners
-require("configs.neocodeium_config").setup_listeners()
--- Automatic statusline update for supported filetypes
-vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    local event = require "neocodeium.events"
-    local filetypes = require("configs.neocodeium_config").filetypes
-    local current_buffer = vim.bo.filetype
-    if vim.tbl_contains(filetypes, current_buffer) then
-      event.emit "NeoCodeiumBufEnabled"
-    else
-      event.emit "NeoCodeiumBufDisabled"
-    end
-  end,
-})

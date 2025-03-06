@@ -46,25 +46,6 @@ return {
     end,
   },
 
-  -- Neocodeium plugin
-  {
-    "monkoose/neocodeium",
-    event = "VeryLazy",
-    config = function()
-      local filetypes = require("configs.neocodeium_config").filetypes
-      require("neocodeium").setup {
-        silent = true,
-        -- will work only important filetypes
-        filter = function()
-          if vim.tbl_contains(filetypes, vim.bo.filetype) then
-            return true
-          end
-          return false
-        end,
-      }
-    end,
-  },
-
   -- Code outliner
   {
     "stevearc/aerial.nvim",
