@@ -21,29 +21,8 @@ return {
       ensure_installed = {
         "lua",
         "python",
-        "javascript",
-        "typescript",
-        "tsx",
-        "html",
-        "css",
-        "svelte",
       },
     },
-  },
-
-  -- Auto close tag for jsx, tsx
-  {
-    "windwp/nvim-ts-autotag",
-    ft = {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "svelte",
-    },
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
   },
 
   -- Markdown plugin

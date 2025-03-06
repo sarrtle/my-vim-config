@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "solarized_osaka",
+  theme = "tokyonight",
 
   -- hl_override = {
   -- Comment = { italic = true },
@@ -31,18 +31,8 @@ M.ui = {
 M.mason = {
   pkgs = {
     -- For python
-    "basedpyright",
+    "pyright",
     "black",
-    "ruff",
-    -- For Web Development
-    "typescript-language-server",
-    "svelte-language-server",
-    "tailwindcss-language-server",
-    "prettierd",
-    "emmet-language-server",
-    -- For Lua
-    "lua-language-server",
-    "stylua",
   },
 }
 

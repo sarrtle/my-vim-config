@@ -10,7 +10,7 @@ local capabalities = configs.capabalities
 local lspconfig = require "lspconfig"
 
 -- PYTHON: diagnostics, static checker, auto completion
-lspconfig.basedpyright.setup {
+lspconfig.pyright.setup {
   filetypes = { "python" },
   on_init = on_init,
   on_attach = on_attach,
@@ -28,6 +28,7 @@ lspconfig.ruff.setup {
   -- disable ruff hover capabilities, since it doesn't have one
   -- but trying to hover and it throws `no information available`
   -- message
+  mason = false,
   handlers = {
     ["textDocument/hover"] = function() end,
   },
@@ -45,91 +46,6 @@ lspconfig.ruff.setup {
         ignore = {
           -- docstring for class init
         },
-      },
-    },
-  },
-}
-
--- HTML: Abbreviation expansion
-lspconfig.emmet_language_server.setup {
-  filetypes = {
-    "css",
-    "eruby",
-    "html",
-    "javascript",
-    "javascriptreact",
-    "less",
-    "sass",
-    "scss",
-    "pug",
-    "typescriptreact",
-    "svelte",
-  },
-  -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
-  -- **Note:** only the options listed in the table are supported.
-  init_options = {
-    ---@type table<string, string>
-    includeLanguages = {},
-    --- @type string[]
-    excludeLanguages = {},
-    --- @type string[]
-    extensionsPath = {},
-    --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
-    preferences = {},
-    --- @type boolean Defaults to `true`
-    showAbbreviationSuggestions = true,
-    --- @type "always" | "never" Defaults to `"always"`
-    showExpandedAbbreviation = "always",
-    --- @type boolean Defaults to `false`
-    showSuggestionsAsSnippets = false,
-    --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
-    syntaxProfiles = {},
-    --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
-    variables = {},
-  },
-}
-
--- TYPESCRIPT: typescript, node js auto completion, diagnostics and static checker
-lspconfig.ts_ls.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabalities = capabalities,
-}
-
--- SVELTE: diagnostics and auto completion, with typescript support.
-lspconfig.svelte.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabalities = capabalities,
-}
-
--- TAILWIND: tailwind css auto completion
-lspconfig.tailwindcss.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabalities = capabalities,
-  -- remove hover capabilities because it throws `no information available`
-  handlers = {
-    ["textDocument/hover"] = function() end,
-  },
-}
-
--- HTML: auto completion
-lspconfig.html.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabalities = capabalities,
-}
-
--- CSS: auto completion
-lspconfig.cssls.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabalities = capabalities,
-  settings = {
-    css = {
-      lint = {
-        unknownAtRules = "ignore",
       },
     },
   },
